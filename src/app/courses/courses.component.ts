@@ -50,6 +50,10 @@ export class CoursesComponent implements OnInit {
     this.tempData = course;
   }
 
+  saveCourse() {
+    console.log('Submited');
+  }
+
   deleteCourse(courseId) {
     console.log('Course deleted', courseId);
   }
