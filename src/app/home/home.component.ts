@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LessonsService } from '../shared/services/lessons.service';
 
 @Component({
   selector: 'app-home',
@@ -10,20 +11,12 @@ export class HomeComponent implements OnInit {
   webText = 'HowdyANkit';
   currentLesson = '';
   changeColor = 'blue';
-  courseLessons = [
-    { title: 'Hello Angular' },
-    { title: 'Component Fundamentals' },
-    { title: 'Template Driven Forms' },
-    { title: 'Angular Services' },
-    { title: 'Server Communication' },
-    { title: 'Component Driven Architecture' },
-    { title: 'Angular Routing' },
-    { title: 'Unit Testing Fundamentals' },
-  ];
+  courseLessons = null;
+  constructor(private lessonsService: LessonsService) {}
 
-  constructor() {}
-
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.courseLessons = this.lessonsService.all();
+  }
 
   onClick(item) {
     console.log(item);

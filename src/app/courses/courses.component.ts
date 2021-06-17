@@ -15,7 +15,9 @@ export class CoursesComponent implements OnInit {
   ngOnInit(): void {
     //It is like a construtor and it gets called initially when all hte binding are satisfied
     this.resetSelectedCourse();
-    this.courses = this.courseService.courses;
+    this.courseService
+      .all() //we do All instead of courses is becasue js dosent have concept of Private
+      .subscribe((courses) => (this.courses = courses));
     //We are doing this to call the EmptyObject first because
     //during compiletTime we are binding an itself empty object instead of null Object
   }
@@ -30,20 +32,22 @@ export class CoursesComponent implements OnInit {
     };
     this.tempData = emptyCourse;
   }
-
   onClick(course) {
     console.log(course);
     this.tempData = course;
   }
-
-  saveCourse() {
-    console.log('Submited');
+  saveCourse(course) {
+    if (course.id) {
+      //If the ID exists update
+      this.courseService.update(course);
+    } else {
+      //if not create
+      this.courseService.create(course);
+    }
   }
-
   deleteCourse(courseId) {
-    console.log('Course deleted', courseId);
+    this.courseService.deleteCourse(courseId);
   }
-
   cancel() {
     this.resetSelectedCourse();
   }

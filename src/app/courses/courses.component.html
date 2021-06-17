@@ -31,7 +31,7 @@
                     Select Course
                 </mat-card-title>
             </mat-card-header>
-            <form #form="ngForm" (submit)="saveCourse()">
+            <form #form="ngForm" (submit)="saveCourse(tempData)">
                 <mat-card-content>
                     <mat-form-field>
                         <input matInput placeholder="title"
