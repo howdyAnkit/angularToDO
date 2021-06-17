@@ -9,19 +9,18 @@ import { MaterialModule } from './material.module';
 import { HomeComponent } from './home/home.component';
 import { CoursesComponent } from './courses/courses.component';
 import { FormsModule } from '@angular/forms';
-
+import { CoursesService } from './shared/services/courses.service';
 @NgModule({
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-
     FormsModule, //We imported this for forms
     MaterialModule,
     HttpClientModule,
   ],
   declarations: [AppComponent, HomeComponent, CoursesComponent],
-  providers: [],
+  providers: [CoursesService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

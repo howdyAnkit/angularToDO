@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CoursesService } from '../shared/services/courses.service';
 
 @Component({
   selector: 'app-courses',
@@ -7,28 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CoursesComponent implements OnInit {
   tempData = null;
-  courses = [
-    {
-      id: 1,
-      title: 'Angular 9 Fundamentals',
-      description: 'Learn the fundamentals of Angular 9',
-      percentComplete: 26,
-      favorite: true,
-    },
-    {
-      id: 2,
-      title: 'JAvaScript The really Hard parts',
-      description: 'Worship will sentence',
-      percentComplete: 56,
-      favorite: true,
-    },
-  ];
+  courses = null;
 
-  constructor() {}
+  constructor(private courseService: CoursesService) {}
 
   ngOnInit(): void {
     //It is like a construtor and it gets called initially when all hte binding are satisfied
     this.resetSelectedCourse();
+    this.courses = this.courseService.courses;
     //We are doing this to call the EmptyObject first because
     //during compiletTime we are binding an itself empty object instead of null Object
   }
@@ -41,7 +28,6 @@ export class CoursesComponent implements OnInit {
       percentComplete: 0,
       favorite: false,
     };
-
     this.tempData = emptyCourse;
   }
 
